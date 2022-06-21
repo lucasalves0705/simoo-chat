@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Web\PageController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -24,4 +25,9 @@ Route::group(['middleware' => [
     'verified',
 ]], function () {
     Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
+    Route::get('/chat', [PageController::class, 'chat'])->name('chat');
+});
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/usuarios', [UserController::class, 'index'])->name('users.index');
 });

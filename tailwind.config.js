@@ -17,5 +17,10 @@ module.exports = {
         },
     },
 
+    variants: {
+      cursor: ['hover'],
+    },
+
     plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
+
 };
