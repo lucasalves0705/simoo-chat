@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\MessageController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Web\PageController;
 use Illuminate\Foundation\Application;
@@ -30,4 +31,8 @@ Route::group(['middleware' => [
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/usuarios', [UserController::class, 'index'])->name('users.index');
+    Route::get('/usuarios/{user}', [UserController::class, 'show'])->name('users.show');
+
+    Route::get('/mensagens/{user}', [MessageController::class, 'listMessages'])->name('messages.listMessages');
+    Route::post('/mensagens/store', [MessageController::class, 'store'])->name('messages.store');
 });
